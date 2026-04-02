@@ -543,6 +543,27 @@ ul {
     overflow: hidden;
 }
 
+/* ===== UBICACIÓN ===== */
+.ubicacion-section {
+    padding: var(--space-lg) 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.map-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+    border: 0;
+}
+
 /* ===== CONTACT FORM ===== */
 .contacto-form-section {
     padding: var(--space-lg) 2rem;
