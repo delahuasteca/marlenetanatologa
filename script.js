@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch request (use no-cors so we don't need complicated CORS handling in Sheets)
             fetch(scriptURL, {
                 method: 'POST',
+                mode: 'no-cors',
                 body: formData
             })
                 .then(response => {
