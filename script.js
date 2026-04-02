@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mobileMenuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        
+
         if (navLinks.classList.contains('active')) {
             mobileMenuIcon.classList.remove('ph-list');
             mobileMenuIcon.classList.add('ph-x');
@@ -56,20 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Observe elements with 'hidden' class
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach(el => observer.observe(el));
-    
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 // Adjust for navbar height
                 const navbarHeight = navbar.offsetHeight;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -77,4 +77,47 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Contact form to Google Sheets
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+
+            // ATENCIÓN: Reemplaza esta URL con el la URL de implementación de tu Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbygyhg3z_xbeJda3AqkVXgsLLGEeJbiWV0g8TQQqFIYne9OUd4-YLC__IblltZLsHyGPg/exec/exec';
+
+            // UI state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Enviando... <i class="ph ph-spinner ph-spin"></i>';
+            submitBtn.disabled = true;
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+
+            const formData = new FormData(contactForm);
+
+            // Fetch request (use no-cors so we don't need complicated CORS handling in Sheets)
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    formMessage.textContent = '¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto por WhatsApp.';
+                    formMessage.classList.add('success');
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta de nuevo, o contáctanos directamente por WhatsApp.';
+                    formMessage.classList.add('error');
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                });
+        });
+    }
 });
