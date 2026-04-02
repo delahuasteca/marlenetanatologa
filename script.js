@@ -106,8 +106,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: formData
             })
                 .then(response => {
-                    formMessage.textContent = '¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto por WhatsApp.';
+                    formMessage.textContent = '¡Datos guardados! Redirigiendo a WhatsApp...';
                     formMessage.classList.add('success');
+                    
+                    // Formatear mensaje para WhatsApp
+                    const nombre = formData.get('nombre') || '';
+                    const motivo = formData.get('motivo') || '';
+                    
+                    let waMessage = `Hola, mi nombre es ${nombre}. `;
+                    if (motivo.trim() !== '') {
+                        waMessage += `Solicito ayuda con el siguiente motivo: ${motivo}`;
+                    } else {
+                        waMessage += `Me gustaría tener más información para agendar una cita.`;
+                    }
+                    
+                    // Redirigir a WhatsApp
+                    const waUrl = `https://wa.me/527711729620?text=${encodeURIComponent(waMessage)}`;
+                    window.open(waUrl, '_blank');
+                    
                     contactForm.reset();
                 })
                 .catch(error => {
