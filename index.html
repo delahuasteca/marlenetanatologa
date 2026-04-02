@@ -145,6 +145,34 @@
             </div>
         </section>
 
+        <!-- Formulario de Contacto -->
+        <section id="contacto" class="contacto-form-section">
+            <div class="section-header">
+                <h2>Contáctame</h2>
+                <p>Déjame tus datos y me pondré en contacto contigo lo antes posible para agendar tu cita o resolver tus dudas.</p>
+            </div>
+            <div class="form-container glass-card hidden">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (WhatsApp) *</label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="Tu número de teléfono">
+                    </div>
+                    <div class="form-group">
+                        <label for="motivo">Motivo de consulta (opcional)</label>
+                        <textarea id="motivo" name="motivo" rows="4" placeholder="¿En qué te puedo ayudar?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large btn-submit" id="submitBtn">
+                        Enviar Mensaje <i class="ph-fill ph-paper-plane-right"></i>
+                    </button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </section>
+
         <!-- Banner Contact -->
         <section class="contact-banner">
             <div class="contact-banner-content hidden">
@@ -158,7 +186,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contacto">
+    <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <div class="logo">
