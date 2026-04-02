@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formMessage = document.getElementById('formMessage');
 
             // ATENCIÓN: Reemplaza esta URL con el la URL de implementación de tu Google Apps Script
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbygyhg3z_xbeJda3AqkVXgsLLGEeJbiWV0g8TQQqFIYne9OUd4-YLC__IblltZLsHyGPg/exec/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbygyhg3z_xbeJda3AqkVXgsLLGEeJbiWV0g8TQQqFIYne9OUd4-YLC__IblltZLsHyGPg/exec';
 
             // UI state
             const originalBtnText = submitBtn.innerHTML;
