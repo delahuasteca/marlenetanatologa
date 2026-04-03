@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                     // Redirigir a WhatsApp
-                    const waUrl = `https://wa.me/527711729620?text=${encodeURIComponent(waMessage)}`;
+                    const waUrl = `https://wa.me/527716810542?text=${encodeURIComponent(waMessage)}`;
                     window.open(waUrl, '_blank');
                     
                     contactForm.reset();
